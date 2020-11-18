@@ -1,20 +1,20 @@
-n, m, k = int(input().split()) # k <= m
-arr = list(int(input().split())) # n == len(arr)
-count = 0
-# 최댓값 뽑기 -> 오름차순 정렬
+n, m, k = map(int, input().split()) # map로 입력 받기
+arr = list(map(int, input().split())) # list로 입력 받기
+result = 0 # 결과값
+# 최댓값 뽑기 -> 오름차순 정렬 ->(작은 수가 먼저)반대로 세기!!
 arr.sort()
-# 최댓값을 k번 넣기
-arr_plus = []
+first = arr[n-1] # 가장 큰 수
+second = arr[n-2] # 가장 큰 수
 
-while count != m:
-    for i in range(k + 1):
-        arr_plus.append(arr[0])
-        count += 1
-    # 그다음 최댓값 1번 더하기
-    arr_plus.append(arr[1])
-    count += 1
+while True:
+    for i in range(k): # 가장 큰 수를 k번 더하기 # k-1번이 아니라 k번!
+        if m == 0: # 더할 때마다 m 값 검사
+            break
+        result += first
+        m -= 1 # 더할 때마다 1 빼기
+    if m == 0: # 더할 때마다 m 값 검사
+        break
+    result += second
+    m -= 1 # 더할 때마다 1 빼기
 
-# 최댓값 k번 더하기
-
-# len(arr_plus) == m 일때 sum 출력.
-print(sum(arr_plus))
+print(result)
